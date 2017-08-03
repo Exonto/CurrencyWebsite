@@ -1,0 +1,11 @@
+<div class="console">
+  <div class="console-display">
+    <textarea readonly></textarea>
+  </div>
+  <div class="console-input">
+    <input type="text" #inputElement
+      [(ngModel)]="cmdInput"
+      (mousedown)="onInputMouseDown($event)"
+      (keydown)="onKeydown($event, inputElement)" />
+  </div>
+</div>
