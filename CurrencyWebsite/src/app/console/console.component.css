@@ -7,6 +7,13 @@
   color: white;
 
   font-family: consolas;
+
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
 .console-display {
@@ -15,13 +22,18 @@
 
   background-color: inherit;
 
-  font-family: inherit;
-
   /*
     Prevents scroll bar from showing in text area while still allowing the mouse
     to scroll.
   */
   overflow: hidden;
+
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
 .console-display textarea {
@@ -32,23 +44,62 @@
   color: inherit;
   border: none;
 
-  resize: none;
+  font-family: inherit;
+
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
 .console-display textarea:focus {
   outline: none;
+
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+.console-input-bar {
+  height: 40px;
+}
+
+.console-prefix {
+  margin-left: 10px;
+  width: 10px;
+  height: 100%;
+  display: inline-block;
+}
+
+.console-prefix label {
+  margin: 0 auto;
+  width: 10px;
 }
 
 .console-input {
+  height: 100%;
+  width: 95%;
+  display: inline-block;
+
   background-color: inherit;
+
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
 .console-input input {
   margin: 0 auto;
-  display: block;
-
-  width: 97%;
-  height: 40px;
+  width: 100%;
+  height: inherit;
 
   cursor: default;
 
@@ -61,8 +112,22 @@
   -webkit-box-shadow: none;
   border: none;
   box-shadow: none;
+
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
 .console-input input:focus {
   outline: none;
+
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }

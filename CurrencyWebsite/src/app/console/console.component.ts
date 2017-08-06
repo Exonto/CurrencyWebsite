@@ -7,61 +7,48 @@ import { CommandService } from '../services/command.service';
   styleUrls: ['./console.component.css']
 })
 export class ConsoleComponent implements OnInit {
-  private inputPrefix: string = '> ';
-  private cmdInput: string = this.inputPrefix;
+  private _inputPrefix: string = '> ';
+  private _rawInput: string = '';
+  private _displayLines: string[] = [];
 
-  constructor(private cmdService: CommandService) { }
+  constructor(private _cmdService: CommandService) { }
 
   @ViewChild("inputElement") myCtrl: ElementRef;
   ngOnInit() {
     this.giveCmdInputFocus();
   }
 
-  runCommand(rawInput: string) {
+  sendCommand(rawInput: string = this._rawInput): void {
+    let output: string = this._cmdService.runCommand(this._rawInput);
+    this.appendToDisplay(output);
     this.resetCmdInput();
   }
 
-  resetCmdInput() {
-    this.cmdInput = this.inputPrefix;
+  resetCmdInput(): void {
+    this._rawInput = '';
   }
 
-  ensureCmdInputPrefix() {
-    if (this.cmdInput.length < this.inputPrefix.length) {
-      this.resetCmdInput();
-    }
-  }
-
-  canBackspace() : boolean {
-    return this.cmdInput.length > this.inputPrefix.length;
-  }
-
-  giveCmdInputFocus() {
+  giveCmdInputFocus(): void {
     this.myCtrl.nativeElement.focus();
   }
 
-  onKeydown(event: KeyboardEvent, inputElement) {
+  displayString(): string {
+    return this._displayLines.join('\n');
+  }
+
+  appendToDisplay(line: string): void {
+    this._displayLines.push(line);
+  }
+
+  onKeydown(event: KeyboardEvent, inputElement): void {
     let key = event.key;
     switch(key) {
       case 'Enter':
-        this.runCommand(this.cmdInput);
+        this.sendCommand();
         break;
       case 'Escape':
         this.resetCmdInput();
         break;
-      case 'Backspace':
-        if (!this.canBackspace()) {
-          event.preventDefault();
-        }
-      case 'ArrowLeft':
-        if (inputElement.selectionStart <= this.inputPrefix.length) {
-          event.preventDefault();
-        }
     }
   }
-
-  onInputMouseDown(event: MouseEvent) {
-    this.giveCmdInputFocus();
-    event.preventDefault();
-  }
-
 }

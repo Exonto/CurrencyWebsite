@@ -1,11 +1,15 @@
 <div class="console">
   <div class="console-display">
-    <textarea readonly></textarea>
+    <textarea readonly [ngModel]="displayString()"></textarea>
   </div>
-  <div class="console-input">
-    <input type="text" #inputElement
-      [(ngModel)]="cmdInput"
-      (mousedown)="onInputMouseDown($event)"
-      (keydown)="onKeydown($event, inputElement)" />
+  <div class="console-input-bar">
+    <div class="console-prefix">
+      <label>{{ _inputPrefix }}</label>
+    </div>
+    <div class="console-input">
+      <input type="text" #inputElement
+        [(ngModel)]="_rawInput"
+        (keydown)="onKeydown($event, inputElement)" />
+    </div>
   </div>
 </div>
